@@ -2,7 +2,7 @@ from app import create_app
 import multiprocessing as mp
 import logging
 # import pip
-# package_name = 'pytest-cov'
+# package_name = 'psycopg2'
 #
 # pip.main(['install', package_name])
 
