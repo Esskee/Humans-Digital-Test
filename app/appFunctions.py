@@ -52,7 +52,7 @@ class Layout_Templates(Corefunc):
     def Body(self):
         return html.Div(id="page-content", children=[], style=self.CONTENT_STYLE)
 
-    def Social_Line(self):
+    def Social_Line(self, df):
         data = px.line(summary, x='Time', y="Users", color='Type',
                                      template='plotly_white', hover_name='User',
                                      color_discrete_sequence=px.colors.qualitative.Pastel2)
