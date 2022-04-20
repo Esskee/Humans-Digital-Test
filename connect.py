@@ -6,11 +6,9 @@ def connect():
     """ Connect to the PostgreSQL database server """
     conn = None
     try:
-        # read connection parameters
-        conn = basevars.conn
-
         # connect to the PostgreSQL server
-        print('Connecting to the PostgreSQL database...')
+        print(f'Connecting to the PostgreSQL database... {basevars.conn_string}')
+        conn = psycopg2.connect(dbname=basevars.database, user=basevars.user, password=basevars.password, host=basevars.host, port = 5432)
 
         # create a cursor
         cur = conn.cursor()
@@ -21,6 +19,7 @@ def connect():
 
         # display the PostgreSQL database server version
         db_version = cur.fetchone()
+
         print(db_version)
 
 	# close the communication with the PostgreSQL

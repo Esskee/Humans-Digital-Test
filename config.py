@@ -1,11 +1,12 @@
-import psycopg2
 
 
 class basevars():
-    conn = psycopg2.connect(
-                    host="hd-rds-interviewees-cluster.cluster-cxqp4co8nabg.eu-west-1.rds.amazonaws.com",
-                    database="external_demos",
-                    port=5432,
-                    user="interview_user",
-                    password="zZu\\X3=,\+(?H\2>Tj\F*wML]=+ET9a",
-                    sslmode='require')
+
+        host='hd-rds-interviewees-cluster.cluster-cxqp4co8nabg.eu-west-1.rds.amazonaws.com'
+        user='interview_user'
+        port = 5432
+        password = '*9zng$kv#g>L[`>{6beX.}U,H&p^^!Vv'
+        database='external_demos'
+        sslmode = 'require'
+
+        conn_string = f'host = {host}, user = {user}, port = {port}, password = {password}, sslmode = {sslmode}'

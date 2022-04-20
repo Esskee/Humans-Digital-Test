@@ -7,13 +7,34 @@ from dash import html
 import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output, State
 from dash.exceptions import PreventUpdate
+from app.appFunctions import Layout_Templates
 
-#most layouts copied from the basic examples from https://dash-bootstrap-components.opensource.faculty.ai/docs/quickstart/ for the sake of speed
+content = Layout_Templates()
+layout = html.Div([
+                dcc.Location(id="URL"),
+                content.Sidebar(),
+                content.Body()
+    ]
+)
 
-# app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+#callbacks
+def register_callbacks(app):
+    @app.callback(
+        Output('result', 'children'),
+        Input('btn1', 'n_clicks'),
+        State('input1','value')
+    )
+    def calculate(n, val):
+        pass
 
-layout = dbc.Container([
-                dbc.Card([
+    @app.callback(
+        Output('page-content', 'children'),
+        Input('URL', 'pathname'),
+    )
+    def page_content1(pathname):
+
+        if pathname == '/':
+            return dbc.Card([
                     dbc.CardHeader([
                         dbc.Row([
                             dbc.Col(
@@ -41,16 +62,3 @@ layout = dbc.Container([
                         )], justify='center'),
                     )
                     ])
-    ], className="justify-content-center center-block text-center",
-)
-
-#make a callback
-def register_callbacks(app):
-    from config import basevars
-    @app.callback(
-        Output('result', 'children'),
-        Input('btn1', 'n_clicks'),
-        State('input1','value')
-    )
-    def calculate(n, val):
-    pass

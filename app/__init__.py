@@ -8,14 +8,13 @@ from config import basevars
 meta_viewport = {'name': 'viewport',
                      'content': 'width=device-width, initial-scale=1.0, maximum-scale=1.2, minimum-scale=0.5,'}
 stylesheet = [dbc.themes.LUX]
-db = basevars.conn
 
 def create_app():
     app = dash.Dash(__name__,
-                         title="My Title",
+                         title="Social Dashboard",
                          external_stylesheets=stylesheet,
                          suppress_callback_exceptions=True,
-                         url_base_pathname='/dashboard/',
+                         url_base_pathname='/',
                          meta_tags=[meta_viewport])
     app.layout = layout
     register_callbacks(app)
