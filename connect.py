@@ -8,17 +8,18 @@ def connect():
     try:
         # connect to the PostgreSQL server
         print(f'Connecting to the PostgreSQL database... {basevars.conn_string}')
-        conn = psycopg2.connect(dbname=basevars.database, user=basevars.user, password=basevars.password, host=basevars.host, port = 5432)
+        conn = psycopg2.connect(dbname=basevars.database, user=basevars.user, password=basevars.password,
+                                host=basevars.host, port=5432, options='-c search_path=telegram_crawler_demo_access')
 
         # create a cursor
         cur = conn.cursor()
 
 	# execute a statement
         print('PostgreSQL database version:')
-        cur.execute('SELECT version()')
+        cur.execute('SELECT * from channel')
 
         # display the PostgreSQL database server version
-        db_version = cur.fetchone()
+        db_version = cur.fetchall()
 
         print(db_version)
 
